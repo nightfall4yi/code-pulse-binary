@@ -1,0 +1,67 @@
+[
+  {
+    "name": "Connect Deriv and show the dashboard without a duplicate connection panel",
+    "sanity": true,
+    "viewport": "mobile",
+    "covers": [
+      "Deriv OAuth connection",
+      "account list retrieval",
+      "account-scoped one-time OTP WebSocket authentication",
+      "fresh OTP on reconnect",
+      "connected dashboard layout",
+      "connection panel hidden after connection",
+      "market and strategy panels remain visible",
+      "latest quote and last digit update in place without retaining previous tick rows"
+    ],
+    "description": "Verifies OAuth retrieves Options accounts and the dashboard uses the selected account's one-time OTP URL for authenticated market data while keeping the connected layout clean.",
+    "steps": [
+      "Connect a Deriv account successfully",
+      "Inspect the dashboard panels"
+    ],
+    "expected": "The connected dashboard shows Market settings and Strategy control, does not show a Connect Deriv panel, has a Disconnect button, and displays only the latest quote and digit without a Recent Ticks list."
+  },
+  {
+    "name": "Remove numbering from the dashboard",
+    "viewport": "desktop",
+    "covers": [
+      "no numbered step labels",
+      "no numbered step badges"
+    ],
+    "description": "Verifies dashboard sections use plain labels without step numbering or numeric badges.",
+    "steps": [
+      "Connect a Deriv account",
+      "Inspect the Market settings and Strategy control headings"
+    ],
+    "expected": "No STEP labels or numeric step badges are displayed."
+  },
+  {
+    "name": "Disconnect returns to the connection screen",
+    "viewport": "mobile",
+    "covers": [
+      "disconnect action",
+      "session token cleared",
+      "connection screen restored"
+    ],
+    "description": "Verifies disconnect ends the local Deriv session and returns the user to the connection screen.",
+    "steps": [
+      "Connect a Deriv account",
+      "Select Disconnect"
+    ],
+    "expected": "The connected dashboard disappears and the Connect Deriv screen is shown."
+  },
+  {
+    "name": "Trading remains disabled while market data is read-only",
+    "viewport": "desktop",
+    "covers": [
+      "strategy execution gating",
+      "read-only market data",
+      "no order placement"
+    ],
+    "description": "Verifies the dashboard does not enable trading simply because the account is connected.",
+    "steps": [
+      "Connect a Deriv account",
+      "Inspect the strategy controls"
+    ],
+    "expected": "The Run strategy button remains disabled and the market feed is described as read-only."
+  }
+]
